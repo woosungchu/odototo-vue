@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/Home'
-import Blank from '@/components/Blank'
-import Words from '@/components/Words'
+import Blank from '@/components/blank/Blank'
+import Words from '@/components/words/Words'
 
 Vue.use(Router)
 
