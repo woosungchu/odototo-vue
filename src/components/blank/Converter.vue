@@ -7,7 +7,7 @@
         </div>
       </div>
       <div class="col-sm-6">
-        <div id="blank-editor" class="editor">
+        <div id="blank-editor" class="editor" v-on:click="blank">
         </div>
       </div>
     </div>
@@ -15,9 +15,9 @@
     <div class="pull-right">
       <span id="blank-msg" class="message" style="display:none;">복사 완료</span>
       <a class="btn btn-primary" v-on:click="convert">확인</a>
-      <a class="btn btn-default" v-on:copy="copy">복사</a>
-      <a class="btn btn-default" v-on:print="print">인쇄</a>
-      <a class="btn btn-default" v-on:cancel="cancel">취소</a>
+      <a class="btn btn-default" v-on:click="copy">복사</a>
+      <a class="btn btn-default" v-on:click="pdf">PDF</a>
+      <a class="btn btn-default" v-on:click="cancel">취소</a>
     </div>
   </div>
 </template>
@@ -37,19 +37,59 @@ export default {
                         })
                         .replace(/\r?\n/, "<br/>");
     },
-    copy(){alert('copy')},
-    print(){alert('print')},
-    cancel(){alert('cancel')}
+    blank(evt){
+	  let target = evt.target,
+    	  spaces = null;
+
+      if(target.tagName === 'SPAN'){
+	      spaces = (new Array(this.lenBytes(target.outerText) + 1)).join('&nbsp;&nbsp;');
+	      target.outerHTML = '['+ spaces + ']';
+      }
+    },
+    copy(){
+	  let editor = this.$el.querySelector('#blank-editor');
+
+      window.getSelection().removeAllRanges();
+
+      if (document.selection) {
+          var range = document.body.createTextRange();
+          range.moveToElementText(editor);
+          range.select();
+      } else if (window.getSelection) {
+          var range = document.createRange();
+          range.selectNode(editor);
+          window.getSelection().addRange(range);
+      }
+
+      if ( document.execCommand( 'copy' ) ) {
+    	  alert('복사 성공!')
+      } else {
+          alert('복사 실패!');
+      }
+
+	},
+    pdf(){alert('pdf')},
+    cancel(){
+      let textarea = this.$el.querySelector('textarea'),
+          editor = this.$el.querySelector('#blank-editor');
+
+      textarea.removeAttribute('disabled');
+      editor.innerHTML = "";
+	},
+	lenBytes(s,b,i,c){
+	  for(b=i=0;c=s.charCodeAt(i++);b+=c>>11?3:c>>7?2:1);
+	  return b
+	},
   }
 }
 </script>
 
-<style scoped>
-textarea {
+<style>
+#blank-converter textarea {
   resize: none;
 }
 
-.editor{
+#blank-converter .editor{
   width: 100%;
   height: 500px;
   padding: 5px 10px;
