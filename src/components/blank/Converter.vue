@@ -16,7 +16,6 @@
       <span id="blank-msg" class="message" style="display:none;">복사 완료</span>
       <a class="btn btn-primary" v-on:click="convert">확인</a>
       <a class="btn btn-default" v-on:click="copy">복사</a>
-      <a class="btn btn-default" v-on:click="pdf">PDF</a>
       <a class="btn btn-default" v-on:click="cancel">취소</a>
     </div>
   </div>
@@ -40,8 +39,8 @@ export default {
                         .replace(/\r?\n/, "<br/>");
     },
     blank(evt){
-	  let target = evt.target,
-    	  spaces = null;
+  	  let target = evt.target,
+      	  spaces = null;
 
       if(target.tagName === 'SPAN'){
 	      spaces = (new Array(this.lenBytes(target.outerText) + 1)).join('&nbsp;&nbsp;');
@@ -49,7 +48,7 @@ export default {
       }
     },
     copy(){
-	  let editor = this.$el.querySelector('#blank-editor');
+	    let editor = this.$el.querySelector('#blank-editor');
 
       window.getSelection().removeAllRanges();
 
@@ -69,19 +68,18 @@ export default {
   		  sweetalert('Failed!','복사에 실패하였습니다','warning');
       }
 
-	},
-    pdf(){alert('pdf')},
+	  },
     cancel(){
       let textarea = this.$el.querySelector('textarea'),
           editor = this.$el.querySelector('#blank-editor');
 
       textarea.removeAttribute('disabled');
       editor.innerHTML = "";
-	},
-	lenBytes(s,b,i,c){
-	  for(b=i=0;c=s.charCodeAt(i++);b+=c>>11?3:c>>7?2:1);
-	  return b
-	},
+  	},
+  	lenBytes(s,b,i,c){
+  	  for(b=i=0;c=s.charCodeAt(i++);b+=c>>11?3:c>>7?2:1);
+  	  return b
+  	}
   }
 }
 </script>
