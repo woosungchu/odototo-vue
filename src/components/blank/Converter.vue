@@ -23,6 +23,8 @@
 </template>
 
 <script>
+import sweetalert from 'sweetalert';
+
 export default {
   name: 'converter',
   methods: {
@@ -62,9 +64,9 @@ export default {
       }
 
       if ( document.execCommand( 'copy' ) ) {
-    	  alert('복사 성공!')
+    	  sweetalert('Success!','성공적으로 복사되었습니다!','success');
       } else {
-          alert('복사 실패!');
+  		  sweetalert('Failed!','복사에 실패하였습니다','warning');
       }
 
 	},
