@@ -1,22 +1,27 @@
 <template>
   <div>
-    <div id="blank-converter" class="row">
-      <div class="col-sm-6">
-        <div class="form-group">
-            <textarea class="form-control editor" placeholder="Message" ></textarea>
+    <div id="blank-converter" class="columns">
+      <div class="column">
+        <div class="field">
+        	<label class="label">여기에 원본 내용을 입력한 후 '확인'을 누르세요</label>
+		    <p class="control">
+		      <textarea class="textarea editor" placeholder="Textarea"></textarea>
+		    </p>
         </div>
       </div>
-      <div class="col-sm-6">
-        <div id="blank-editor" class="editor" v-on:click="blank">
+      <div class="column">
+      	<label class="label">빈칸으로 만들고 싶은 단어를 클릭하세요</label>
+	    <p class="control">
+	      <div id="blank-editor" class="editor" v-on:click="blank">
+	    </p>
         </div>
       </div>
     </div>
 
-    <div class="pull-right">
-      <span id="blank-msg" class="message" style="display:none;">복사 완료</span>
-      <a class="btn btn-primary" v-on:click="convert">확인</a>
-      <a class="btn btn-default" v-on:click="copy">복사</a>
-      <a class="btn btn-default" v-on:click="cancel">취소</a>
+    <div class="block is-pulled-right">
+      <a class="button" v-on:click="convert">확인</a>
+      <a class="button" v-on:click="copy">복사</a>
+      <a class="button" v-on:click="cancel">취소</a>
     </div>
   </div>
 </template>
