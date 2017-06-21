@@ -1,13 +1,13 @@
 <template>
-  <nav id="headerv" class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <router-link id="logo" v-bind:to="'/'" class="navbar-brand">
-          오동통통
-        </router-link>
-      </div>
+<nav id="headerv" class="nav">
+  <div class="container">
+    <div class="nav-left">
+      <router-link id="logo" v-bind:to="'/'" class="nav-item is-active">
+      오동통통
+      </router-link>
     </div>
-  </nav>
+  </div>
+</nav>
 </template>
 
 <script>
@@ -25,5 +25,6 @@ export default {
 
 #logo {
   color: white;
+  font-size: 1.2rem;
 }
 </style>
