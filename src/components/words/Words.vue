@@ -19,7 +19,7 @@
 	    <words-scramble v-bind:quizzes="quizzes"></words-scramble>
 	  </div>
 	  <div class="tab-content" v-show="selectedTab == 2">
-	    <words-matchup></words-matchup>
+	    <words-matchup v-bind:quizzes="quizzes"></words-matchup>
 	  </div>
 	</div>
 	
