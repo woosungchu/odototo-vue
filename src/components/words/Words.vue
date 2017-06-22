@@ -23,18 +23,22 @@
 	  </div>
 	</div>
 	
+	<words-inputs></words-inputs>
+	
   </div>	
 </template>
 
 <script>
 import WordsScramble from './WordsScramble'
 import WordsMatchup from './WordsMatchup'
+import WordsInputs from './WordsInputs'
 
 export default {
   name: 'words',
   components: {
   	WordsScramble,
-  	WordsMatchup
+  	WordsMatchup,
+  	WordsInputs
   },
   data () {
     return {
