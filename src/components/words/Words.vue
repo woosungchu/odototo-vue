@@ -14,11 +14,13 @@
 	</div>
 	
 	<!-- tab-contents -->
-	<div class="tab-content" v-show="selectedTab == 1">
-	  <words-scramble></words-scramble>
-	</div>
-	<div class="tab-content" v-show="selectedTab == 2">
-	  <words-matchup></words-matchup>
+	<div class="container">
+	  <div class="tab-content" v-show="selectedTab == 1">
+	    <words-scramble v-bind:quizzes="quizzes"></words-scramble>
+	  </div>
+	  <div class="tab-content" v-show="selectedTab == 2">
+	    <words-matchup></words-matchup>
+	  </div>
 	</div>
 	
   </div>	
@@ -36,7 +38,12 @@ export default {
   },
   data () {
     return {
-      selectedTab: 1
+      selectedTab: 1,
+      quizzes : [
+      	{id:1,text:'First quiz',meaning:'First Meaning'},
+      	{id:2,text:'Second quiz',meaning:'Second Meaning'},
+      	{id:3,text:'Third quiz',meaning:'Third Meaning'}
+      ]
     }
   },
   methods: {
