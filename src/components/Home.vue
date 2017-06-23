@@ -12,9 +12,12 @@
   </section>	
 
   <!-- Projects Row -->
-  <div class="columns">
+  <section class="section">
+  <div class="container">
   
-      <div class="column">
+  	<div class="columns">
+  	
+      <div class="column is-one-two-desktop is-full-mobile">
       	<router-link v-bind:to="'/blank'">
 	        <div class="card">
 			  <div class="card-image">
@@ -34,7 +37,7 @@
 		</router-link>
       </div>
       
-      <div class="column">
+      <div class="column is-one-two-desktop is-full-mobile">
       	<router-link v-bind:to="'/words'">
 	        <div class="card">
 			  <div class="card-image">
@@ -54,7 +57,11 @@
 		</router-link>
       </div>
       
-  </div><!-- columns -->
+     </div><!-- columns -->
+     
+  </div><!-- container -->
+  </section>
+  
 </div>
 
 
@@ -70,3 +77,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+#main-index {
+	margin: 0 auto;
+}
+</style>
