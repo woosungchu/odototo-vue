@@ -1,9 +1,11 @@
 <template>
   <div id="app">
     <headerv></headerv>
-    <div class="container is-fluid">
-      <router-view></router-view>
-    </div>
+    <section class="section">
+      <div class="container">
+        <router-view></router-view>
+      </div>
+    </section">
   </div>
 </template>
 
@@ -28,10 +30,5 @@ export default {
   line-height: 1.5;
   color: #24292e;
   background-color: #fff;
-}
-
-.is-fluid {
-  margin-left : 20px;
-  margin-right : 20px;
 }
 </style>

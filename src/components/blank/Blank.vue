@@ -1,12 +1,6 @@
 <template>
   <div>
-  
-	<section class="section">
-	  <div class="container">
-	    <h1 class="title">빈칸 채우기</h1>
-	  </div>
-	</section>
-  
+    <h1 class="title">빈칸 채우기</h1>
     <converter></converter>
     <guide></guide>
   </div>
