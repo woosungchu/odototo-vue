@@ -18,7 +18,7 @@
 	    <words-matchup v-bind:quizzes="quizzes"></words-matchup>
 	  </div>
 
-    <words-inputs></words-inputs>
+    <words-inputs v-bind:quizzes="quizzes"></words-inputs>
 
   </div>
 </template>
@@ -39,9 +39,9 @@ export default {
     return {
       selectedTab: 1,
       quizzes : [
-      	{id:1,text:'First quiz',meaning:'First Meaning'},
-      	{id:2,text:'Second quiz',meaning:'Second Meaning'},
-      	{id:3,text:'Third quiz',meaning:'Third Meaning'}
+      	{text:'First quiz',meaning:'First Meaning'},
+      	{text:'Second quiz',meaning:'Second Meaning'},
+      	{text:'Third quiz',meaning:'Third Meaning'}
       ]
     }
   },
