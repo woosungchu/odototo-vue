@@ -2,13 +2,7 @@
   <section class="section">
 
 	<ul>
-<!--
-      <li class="columns">
-        <label class="column is-5 label">단어</label>
-        <label class="column is-5 label">뜻</label>
-        <span class="column is-2"></span>
-      </li>
-  -->
+
       <li class="columns field is-grouped">
       	<p class="column is-5 control">
 	      <input class="input" name="text" type="text" placeholder="단어">
@@ -21,12 +15,15 @@
         </p>
       </li>
 
-      <li class="columns" v-for="(quiz,index) in quizzes">
-        <span class="column is-5">{{quiz.text}}</span>
-        <span class="column is-5">{{quiz.meaning}}</span>
-        <span class="column is-2" v-on:click="removeQuiz(index)">X</span>
-      </li>
+      <div id="quiz-tags">
+        <span class="tag is-primary" v-for="(quiz,index) in quizzes">
+          {{quiz.text}}
+          <button class="delete is-small" v-on:click="removeQuiz(index)"></button>
+        </span>
+      </div>
+
     </ul>
+
 
   </section>
 </template>
@@ -57,3 +54,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+#quiz-tags .tag {
+  margin-right:3px;
+  margin-bottom:3px;
+  background-color:rgba(0,136,209,0.6);
+}
+</style>

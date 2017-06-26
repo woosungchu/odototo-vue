@@ -12,7 +12,7 @@
 
     <!-- tab-contents -->
 	  <div class="tab-content" v-show="selectedTab == 1">
-	    <words-scramble v-bind:quizzes="quizzes"></words-scramble>
+	    <words-basic v-bind:quizzes="quizzes"></words-basic>
 	  </div>
 	  <div class="tab-content" v-show="selectedTab == 2">
 	    <words-matchup v-bind:quizzes="quizzes"></words-matchup>
@@ -24,14 +24,14 @@
 </template>
 
 <script>
-import WordsScramble from './WordsScramble'
+import WordsBasic from './WordsBasic'
 import WordsMatchup from './WordsMatchup'
 import WordsInputs from './WordsInputs'
 
 export default {
   name: 'words',
   components: {
-  	WordsScramble,
+  	WordsBasic,
   	WordsMatchup,
   	WordsInputs
   },
