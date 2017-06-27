@@ -2,7 +2,7 @@
   <div>
 
 	   <div class="columns header">
-      <div class="column">
+      <div class="column has-text-centered">
         <span>#</span>
       </div>
       <div class="column is-4">
@@ -14,9 +14,9 @@
       <div class="column"></div>
     </div>
 
-    <div id="quiz-list">
+    <div class="quiz-list">
       <div class="columns quiz" v-for="(quiz,index) in quizzes">
-      	<div class="column">
+      	<div class="column has-text-centered">
   	      <span>{{index + 1}}</span>
   	    </div>
   	    <div class="column is-4">
@@ -40,21 +40,4 @@ export default {
 </script>
 
 <style scoped>
-#quiz-list {
-  padding-top:9px;
-  height:100%;
-  min-height:350px;
-  max-height:350px;
-  overflow-x: hidden;
-  overflow-y: scroll;
-}
-
-.columns > div:first-child {
-  text-align: center;
-}
-
-.quiz:nth-child(odd){
-  background-color : rgba(0,136,209,0.1);
-}
-
 </style>

@@ -5,12 +5,12 @@
 
       <li class="columns field is-grouped">
       	<p class="column is-5 control">
-	      <input class="input" name="text" type="text" placeholder="단어">
-	    </p>
+  	      <input class="input" name="text" type="text" placeholder="단어">
+  	    </p>
         <p class="column is-5 control">
-	      <input class="input" name="meaning" type="text" placeholder="뜻">
-	    </p>
-	    <p class="column is-2 control">
+  	      <input class="input" name="meaning" type="text" placeholder="뜻">
+  	    </p>
+	       <p class="column is-2 control">
           <a class="button is-info" v-on:click="addQuiz">Add</a>
         </p>
       </li>

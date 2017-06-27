@@ -1,6 +1,7 @@
 <template>
-  <div>
+  <div id="words-container">
 
+    <a class="button is-pulled-right" v-on:click="print">프린트</a>
     <h1 class="title">단어 맞추기</h1>
 
   	<div class="tabs">
@@ -48,11 +49,33 @@ export default {
   methods: {
     updateSelected: function(tab) {
       this.selectedTab = tab;
+    },
+    print: function(){
+      alert('print');
+    /*
+      let target = this.$el.querySelector('.tab-content');
+
+      target.className += ' printing';
+      window.print();
+      target.className = target.className.replace('printing','');
+    */
     }
   }
 
 }
 </script>
 
-<style scoped>
+<style>
+#words-container .quiz-list {
+  padding-top:9px;
+  height:100%;
+  min-height:350px;
+  max-height:350px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+#words-container .quiz-list .quiz:nth-child(odd){
+  background-color : rgba(0,136,209,0.1);
+}
 </style>
