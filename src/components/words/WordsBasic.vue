@@ -22,7 +22,7 @@
   	    <div class="column is-4">
   	      <span class="none">{{quiz.text}}</span>
   	    </div>
-  	    <div class="column is-6">
+  	    <div class="column is-6 dashed-underline">
   	      <span></span>
   	    </div>
         <div class="column"></div>
@@ -41,7 +41,7 @@ export default {
 
 <style scoped>
 #quiz-list {
-  padding-top:10px;
+  padding-top:9px;
   height:100%;
   min-height:350px;
   max-height:350px;
@@ -52,7 +52,8 @@ export default {
 .columns > div:first-child {
   text-align: center;
 }
-.quiz:nth-child(odd) > div:nth-child(3n){
+
+.quiz:nth-child(odd){
   background-color : rgba(0,136,209,0.1);
 }
 
