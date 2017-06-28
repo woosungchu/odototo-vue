@@ -12,10 +12,10 @@
   	</div>
 
     <!-- tab-contents -->
-	  <div class="tab-content" v-show="selectedTab == 1">
+	  <div class="tab-content" v-bind:class="{ 'is-active': selectedTab == 1 }" v-show="selectedTab == 1">
 	    <words-basic v-bind:quizzes="quizzes"></words-basic>
 	  </div>
-	  <div class="tab-content" v-show="selectedTab == 2">
+	  <div class="tab-content" v-bind:class="{ 'is-active': selectedTab == 2 }" v-show="selectedTab == 2">
 	    <words-matchup v-bind:quizzes="quizzes"></words-matchup>
 	  </div>
 
@@ -51,14 +51,12 @@ export default {
       this.selectedTab = tab;
     },
     print: function(){
-      alert('print');
-    /*
-      let target = this.$el.querySelector('.tab-content');
+      let target = this.$el.querySelector('.tab-content.is-active');
 
       target.className += ' printing';
       window.print();
       target.className = target.className.replace('printing','');
-    */
+
     }
   }
 
@@ -69,10 +67,10 @@ export default {
 #words-container .quiz-list {
   padding-top:9px;
   height:100%;
-  min-height:350px;
-  max-height:350px;
+  min-height:400px;
+  max-height:400px;
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 #words-container .quiz-list .quiz:nth-child(odd){

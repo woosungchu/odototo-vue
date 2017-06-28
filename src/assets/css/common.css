@@ -3,7 +3,7 @@
 }
 
 .dashed-underline {
-  border-bottom : 1px dashed black;
+  border-bottom : 1px solid black;
 }
 
 @media print{
@@ -22,6 +22,10 @@
   .printing * {
     visibility: visible;
     position: static;
+  }
+  
+  #words-container .quiz-list{
+  	overflow:visible !important;
   }
 
 }

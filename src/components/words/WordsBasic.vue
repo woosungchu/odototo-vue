@@ -1,7 +1,7 @@
 <template>
   <div>
 
-	   <div class="columns header">
+    <div class="columns header">
       <div class="column has-text-centered">
         <span>#</span>
       </div>
