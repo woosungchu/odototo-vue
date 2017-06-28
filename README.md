@@ -16,6 +16,15 @@ npm run build
 
 # build for production and view the bundle analyzer report
 npm run build --report
+
+# deploy to AWS S3
+odototo-vue/dist $ aws s3 cp . s3://odototo.com/ --recursive
+
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+#### Reference
+
+- [AWS S3 CLI](http://docs.aws.amazon.com/cli/latest/reference/s3/index.html)
+- [guide](http://vuejs-templates.github.io/webpack/) 
+- [docs for vue-loader](http://vuejs.github.io/vue-loader)
+
