@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import Headerv from '@/components/Headerv'
+import Headerv from '@/components/common/Headerv'
 
 export default {
   name: 'app',
