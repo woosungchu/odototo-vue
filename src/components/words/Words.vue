@@ -20,6 +20,8 @@
 	  </div>
 
     <words-inputs v-bind:quizzes="quizzes"></words-inputs>
+    
+    <comments v-bind:identifier=identifier></comments>
 
   </div>
 </template>
@@ -28,13 +30,15 @@
 import WordsBasic from './WordsBasic'
 import WordsMatchup from './WordsMatchup'
 import WordsInputs from './WordsInputs'
+import Comments from '@/components/common/Comments'
 
 export default {
   name: 'words',
   components: {
   	WordsBasic,
   	WordsMatchup,
-  	WordsInputs
+  	WordsInputs,
+  	Comments
   },
   data () {
     return {
@@ -43,7 +47,8 @@ export default {
       	{text:'First quiz',meaning:'First Meaning'},
       	{text:'Second quiz',meaning:'Second Meaning'},
       	{text:'Third quiz',meaning:'Third Meaning'}
-      ]
+      ],
+      identifier : 'word'//'words'
     }
   },
   methods: {
