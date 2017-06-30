@@ -49,16 +49,51 @@ export default {
       let canvas = this.$el.querySelector('#pixel-art-canvas'),
       	  image = this.$el.querySelector('#upload-image'),
       	  ctx = canvas.getContext('2d'),
-          degree = 120,
+          degree = 10,
           img = new Image,
-          imgd,pix;
+          tiles = Math.pow(degree,2),
+          ctxArr = [],
+          eachWidth,eachHeight;
 
       img.src = image.src;
       ctx.drawImage(img,0,0);
+      
+      eachWidth= canvas.width/degree;
+      eachHeight= canvas.height/degree;
+      
+      for(let k = 0; k < tiles; k++) {
+      	let imgd,x,y;
+      	
+      	x = (k % degree) * eachWidth; 
+      	y = (k / degree) * eachHeight;
+      	imgd = ctx.getImageData(x, y, eachWidth, eachHeight);
+      	ctxArr.push(imgd.data);
+      	console.log(x);
+      	console.log(y);
+      }
+      
+      for (let j = 0; j < ctxArr.length; j++) {
+      	  let pix = ctxArr[j],
+      	  	  rgb = {r:0,g:0,b:0};
+      	
+          for (let i = 0, n = pix.length; i <n; i += 4) {
+	          rgb.r += pix[i];
+	          rgb.g += pix[i+1];
+	          rgb.b += pix[i+2];
+	      }
+	      
+	      rgb.r = ~~(rgb.r/pix.length);
+	      rgb.g = ~~(rgb.g/pix.length);
+	      rgb.b = ~~(rgb.b/pix.length);
+	      
+	      console.log(rgb);
+      }
 
+	  /*
       imgd = ctx.getImageData(0, 0, canvas.width, canvas.height);
       pix = imgd.data;
 
+	  
       for (let i = 0, n = pix.length; i <n; i += 4) {
           let r = pix[i],
               g = pix[i+1],
@@ -69,7 +104,9 @@ export default {
             pix[i] = pix[i+1] = pix[i+2] = 255; //white
           }
       }
+      
       ctx.putImageData(imgd,0,0);
+      */
       
     }
 
