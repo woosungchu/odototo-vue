@@ -68,28 +68,32 @@ export default {
       	y = (k / degree) * eachHeight;
       	imgd = ctx.getImageData(x, y, eachWidth, eachHeight);
       	ctxArr.push(imgd.data);
-      	console.log(x);
-      	console.log(y);
       }
       
       for (let j = 0; j < ctxArr.length; j++) {
       	  let pix = ctxArr[j],
-      	  	  rgb = {r:0,g:0,b:0};
+      	  	  rgb = {r:0,g:0,b:0},
+      	  	  blockSize = 5,
+	      	  count = 0,
+	      	  i = -4;
       	
-          for (let i = 0, n = pix.length; i <n; i += 4) {
-	          rgb.r += pix[i];
-	          rgb.g += pix[i+1];
-	          rgb.b += pix[i+2];
-	      }
+          while ( (i += blockSize * 4) < pix.length ) {
+		      ++count;
+		      rgb.r += pix[i];
+		      rgb.g += pix[i+1];
+		      rgb.b += pix[i+2];
+		  }
 	      
-	      rgb.r = ~~(rgb.r/pix.length);
-	      rgb.g = ~~(rgb.g/pix.length);
-	      rgb.b = ~~(rgb.b/pix.length);
+	      rgb.r = ~~(rgb.r/count);
+	      rgb.g = ~~(rgb.g/count);
+	      rgb.b = ~~(rgb.b/count);
 	      
 	      console.log(rgb);
       }
 
 	  /*
+	  https://stackoverflow.com/questions/2541481/get-average-color-of-image-via-javascript
+	  
       imgd = ctx.getImageData(0, 0, canvas.width, canvas.height);
       pix = imgd.data;
 
