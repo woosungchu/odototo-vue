@@ -46,6 +46,7 @@ export default {
       fileReader.readAsDataURL(fileInput.files[0]);
     },//displayImage
     convert(){
+      //https://stackoverflow.com/questions/44869117/context-putimagedata-of-html-canvas-set-on-wrong-coordinate/44870027#44870027
       let canvas = this.$el.querySelector('#pixel-art-canvas'),
       	  image = this.$el.querySelector('#upload-image'),
       	  ctx = canvas.getContext('2d'),
@@ -61,32 +62,29 @@ export default {
       eachHeight= canvas.height/degree;
 
       for(let k = 0; k < tiles; k++) {
-      	let imgd,x,y,
-            rgb = {r:0,g:0,b:0},
-            count = 0;
+        const x = (k % degree) * eachWidth;
+        const y = ((k / degree) | 0) * eachHeight;
+        const imgd = ctx.getImageData(x, y, eachWidth, eachHeight);
+        const rgb = {r : 0, g : 0, b : 0};
+        const count = imgd.data.length / 4;
+        var i = 0;
 
-      	x = (k % degree) * eachWidth;
-      	y = Math.floor(k / degree)  * eachHeight;
-      	imgd = ctx.getImageData(x, y, eachWidth, eachHeight);
-
-        for (let i=0; i < imgd.data.length; i=i+4) {
-            rgb.r += imgd.data[i] * imgd.data[i];
-            rgb.g += imgd.data[i + 1] * imgd.data[i + 1];
-            rgb.b += imgd.data[i + 2] * imgd.data[i + 1];
-            count++;
+        while( i < imgd.data.length ) {
+          rgb.r += imgd.data[i] * imgd.data[i++];
+          rgb.g += imgd.data[i] * imgd.data[i++];
+          rgb.b += imgd.data[i] * imgd.data[i++];
+          i ++;
         }
 
-	      rgb.r = Math.sqrt(rgb.r/count) | 0;
-	      rgb.g = Math.sqrt(rgb.g/count) | 0;
-	      rgb.b = Math.sqrt(rgb.b/count) | 0;
+        rgb.r = Math.sqrt(rgb.r / count) | 0;
+        rgb.g =  Math.sqrt(rgb.g / count) | 0;
+        rgb.b =  Math.sqrt(rgb.b / count) | 0;
 
-        for (let j=0; j < imgd.data.length; j=j+4) {
-  		      imgd.data[j] = rgb.r;
-  		      imgd.data[j+1] = rgb.g;
-  		      imgd.data[j+2] = rgb.b;
-  		  }
+        new Uint32Array(imgd.data.buffer).fill(
+          0xFF000000 + (rgb.r << 16) + (rgb.g << 8) + rgb.b
+        );
 
-        ctx.putImageData(imgd, x, y, 0, 0, eachWidth, eachHeight);
+        ctx.putImageData(imgd, x, y);
       }//end for
 
     }
