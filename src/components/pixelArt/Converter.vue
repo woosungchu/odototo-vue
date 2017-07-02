@@ -61,37 +61,32 @@ export default {
       eachHeight= canvas.height/degree;
 
       for(let k = 0; k < tiles; k++) {
-      	let imgd,x,y;
+      	let imgd,x,y,
+            rgb = {r:0,g:0,b:0},
+            count = 0;
 
       	x = (k % degree) * eachWidth;
-      	y = (k / degree) * eachHeight;
+      	y = Math.floor(k / degree)  * eachHeight;
       	imgd = ctx.getImageData(x, y, eachWidth, eachHeight);
 
-        let pix = imgd.data,
-    	  	  rgb = {r:0,g:0,b:0},
-    	  	  blockSize = 5,
-	      	  count = 0,
-	      	  i = -4;
+        for (let i=0; i < imgd.data.length; i=i+4) {
+            rgb.r += imgd.data[i] * imgd.data[i];
+            rgb.g += imgd.data[i + 1] * imgd.data[i + 1];
+            rgb.b += imgd.data[i + 2] * imgd.data[i + 1];
+            count++;
+        }
 
-        while ( (i += blockSize * 4) < pix.length ) {
-  		      ++count;
-  		      rgb.r += pix[i];
-  		      rgb.g += pix[i+1];
-  		      rgb.b += pix[i+2];
+	      rgb.r = Math.sqrt(rgb.r/count) | 0;
+	      rgb.g = Math.sqrt(rgb.g/count) | 0;
+	      rgb.b = Math.sqrt(rgb.b/count) | 0;
+
+        for (let j=0; j < imgd.data.length; j=j+4) {
+  		      imgd.data[j] = rgb.r;
+  		      imgd.data[j+1] = rgb.g;
+  		      imgd.data[j+2] = rgb.b;
   		  }
 
-	      rgb.r = ~~(rgb.r/count);
-	      rgb.g = ~~(rgb.g/count);
-	      rgb.b = ~~(rgb.b/count);
-        i = -4;
-
-        while ( (i += blockSize * 4) < pix.length ) {
-  		      pix[i] = rgb.r;
-  		      pix[i+1] = rgb.g;
-  		      pix[i+2] = rgb.b;
-  		  }
-
-        ctx.putImageData(imgd, 0,0 ,x, y, eachWidth, eachHeight);
+        ctx.putImageData(imgd, x, y, 0, 0, eachWidth, eachHeight);
       }//end for
 
     }
