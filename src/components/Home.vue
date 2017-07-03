@@ -46,8 +46,8 @@ export default {
     return {
       contents: [
         {route:'/blank', title:'빈칸 채우기', description:'글의 원하는 단어를 빈칸으로 만들어 버립니다!', },
-        {route:'/words', title:'단어 맞추기', description:'단어의 개념을 이해하는 데 도움을 줄 학습지 제작', },
-        {route:'/PixelArt', title:'픽셀아트', description:'좋아하는 사진으로 픽셀아트 도안을 만들어 봅시다', }
+        {route:'/words', title:'단어 맞추기', description:'단어의 개념을 이해하는 데 도움을 줄 학습지 제작', }/*,
+        {route:'/PixelArt', title:'픽셀아트', description:'좋아하는 사진으로 픽셀아트 도안을 만들어 봅시다', }*/
       ]
     }
   }
